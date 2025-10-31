@@ -12,9 +12,9 @@ import { maps } from './maps.js';
  */
 function convertNumericMapToASCII(numericMap) {
   const tileMap = {
-    0: ' ',  // EMPTY -> FLOOR (display as floor)
+    0: ' ',  // EMPTY -> Space (treated as floor for display, represents area outside playable zone)
     1: '#',  // WALL
-    2: ' ',  // FLOOR
+    2: ' ',  // FLOOR -> Space (playable floor area, same visual as EMPTY)
     3: '.',  // TARGET -> GOAL
     4: '$',  // CARGO -> BOX
     5: '*',  // CARGO_ON_TARGET -> BOX_ON_GOAL
@@ -23,7 +23,14 @@ function convertNumericMapToASCII(numericMap) {
   };
 
   return numericMap.map(row => 
-    row.map(tile => tileMap[tile] || ' ').join('')
+    row.map(tile => {
+      const ascii = tileMap[tile];
+      if (ascii === undefined) {
+        console.warn(`Unknown tile type encountered: ${tile}, treating as floor`);
+        return ' ';
+      }
+      return ascii;
+    }).join('')
   );
 }
 
