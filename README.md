@@ -111,10 +111,16 @@ LEVELS = [
 
 ### Running Tests
 
-The game includes basic functionality that can be tested:
+The game includes comprehensive unit tests:
 
 ```bash
-python3 -m doctest boxworld.py -v
+python3 test_boxworld.py
+```
+
+Or run with verbose output:
+
+```bash
+python3 test_boxworld.py -v
 ```
 
 ## Technical Details
