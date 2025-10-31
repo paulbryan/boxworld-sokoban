@@ -3,6 +3,37 @@
  * Push all boxes onto the goal positions to win!
  */
 
+import { maps } from './maps.js';
+
+/**
+ * Convert numeric tile-based map to ASCII string format
+ * @param {number[][]} numericMap - Map with numeric tiles
+ * @returns {string[]} - Array of ASCII strings
+ */
+function convertNumericMapToASCII(numericMap) {
+  const tileMap = {
+    0: ' ',  // EMPTY -> Space (treated as floor for display, represents area outside playable zone)
+    1: '#',  // WALL
+    2: ' ',  // FLOOR -> Space (playable floor area, same visual as EMPTY)
+    3: '.',  // TARGET -> GOAL
+    4: '$',  // CARGO -> BOX
+    5: '*',  // CARGO_ON_TARGET -> BOX_ON_GOAL
+    6: '@',  // KEEPER -> PLAYER
+    7: '+',  // KEEPER_ON_TARGET -> PLAYER_ON_GOAL
+  };
+
+  return numericMap.map(row => 
+    row.map(tile => {
+      const ascii = tileMap[tile];
+      if (ascii === undefined) {
+        console.warn(`Unknown tile type encountered: ${tile}, treating as floor`);
+        return ' ';
+      }
+      return ascii;
+    }).join('')
+  );
+}
+
 export class BoxWorld {
   // Game symbols
   static WALL = '#';
@@ -217,51 +248,5 @@ export class BoxWorld {
   }
 }
 
-// Collection of levels
-export const LEVELS = [
-  // Level 1 - Simple introduction
-  [
-    "########",
-    "#  .   #",
-    "#  $   #",
-    "#  @   #",
-    "########",
-  ],
-
-  // Level 2 - Two boxes
-  [
-    "#########",
-    "#   .   #",
-    "#   $   #",
-    "#  @$. ##",
-    "#########",
-  ],
-
-  // Level 3 - Corner challenge (redesigned to be solvable)
-  [
-    "######",
-    "#.   #",
-    "#.$$ #",
-    "#. @ #",
-    "######",
-  ],
-
-  // Level 4 - Three boxes
-  [
-    "#######",
-    "#. . .#",
-    "#  $  #",
-    "# $ $ #",
-    "#  @  #",
-    "#######",
-  ],
-
-  // Level 5 - Four boxes corridor
-  [
-    "########",
-    "#.  . .#",
-    "# $$ $ #",
-    "#   .@ #",
-    "########",
-  ],
-];
+// Collection of levels - converted from maps.js numeric format to ASCII strings
+export const LEVELS = maps.map(convertNumericMapToASCII);
