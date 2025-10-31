@@ -1,6 +1,14 @@
 # Boxworld - Sokoban Puzzle Game
 
-A Python implementation of the classic Boxworld/Sokoban puzzle game. Push all boxes onto goal positions to complete each level!
+A modern web-based implementation of the classic Boxworld/Sokoban puzzle game built with React and Vite. Push all boxes onto goal positions to complete each level!
+
+## Screenshots
+
+### Game Interface
+![Game Interface](https://github.com/user-attachments/assets/53f9953d-662a-4e3f-8380-cca5ea468f01)
+
+### Level Complete
+![Level Complete](https://github.com/user-attachments/assets/b7afa26e-f4c5-439e-a7b1-ca67f594ee40)
 
 ## About
 
@@ -13,64 +21,75 @@ Boxworld is based on Sokoban, a classic Japanese puzzle game created in 1981. Th
 - ↩️ Undo functionality to reverse mistakes
 - 🔄 Level reset capability
 - 🎯 Win condition detection
-- 💻 Terminal-based ASCII graphics interface
+- 🎨 Beautiful graphical user interface with emojis
+- ⌨️ **Arrow key controls** for intuitive gameplay
+- 🌐 Web-based - play in any modern browser
+- ⚛️ Built with React and Vite
 
 ## Installation
 
-No installation required! Just make sure you have Python 3.6+ installed.
+### Prerequisites
+
+- Node.js 18+ and npm
+
+### Setup
 
 ```bash
 # Clone the repository
 git clone https://github.com/paulbryan/boxworld-sokoban.git
 cd boxworld-sokoban
 
-# Make the game executable (optional)
-chmod +x boxworld.py
+# Install dependencies
+npm install
 ```
 
 ## How to Play
 
-Run the game:
+### Run the Game
+
+Start the development server:
 
 ```bash
-python3 boxworld.py
+npm run dev
 ```
 
-Or if you made it executable:
+Then open your browser to the URL shown (typically http://localhost:5173)
+
+Or build for production:
 
 ```bash
-./boxworld.py
+npm run build
+npm run preview
 ```
 
 ### Game Controls
 
-- `w` or `↑` - Move Up
-- `s` or `↓` - Move Down
-- `a` or `←` - Move Left
-- `d` or `→` - Move Right
-- `u` - Undo last move
-- `r` - Reset current level
-- `q` - Quit game
+- **↑ Arrow Up** - Move Up
+- **↓ Arrow Down** - Move Down
+- **← Arrow Left** - Move Left
+- **→ Arrow Right** - Move Right
+- **U** - Undo last move
+- **R** - Reset current level
 
 ### Game Symbols
 
-- `@` - Player (warehouse keeper)
-- `#` - Wall
-- `$` - Box (crate)
-- `.` - Goal position (target spot)
-- `*` - Box on goal (box placed correctly)
-- `+` - Player on goal
+- 🧑 - Player (warehouse keeper)
+- 📦 - Box (crate)
+- ⭕ - Goal position (target spot)
+- ✅ - Box on goal (box placed correctly)
+- Dark gray - Walls
+- Tan - Floor
 
 ### Rules
 
-1. **Objective**: Push all boxes ($) onto goal positions (.) to complete the level
-2. **Movement**: The player can move in four directions (up, down, left, right)
+1. **Objective**: Push all boxes (📦) onto goal positions (⭕) to complete the level
+2. **Movement**: Use arrow keys to move in four directions (up, down, left, right)
 3. **Pushing**: Boxes can only be **pushed**, not pulled
 4. **Limitations**: 
    - Only one box can be moved at a time
    - You cannot push a box if there's a wall or another box behind it
    - Be careful not to push boxes into corners - they might become unmovable!
-5. **Winning**: A level is complete when all boxes are on goal positions (shown as `*`)
+5. **Winning**: A level is complete when all boxes are on goal positions (shown as ✅)
 
 ## Game Strategy Tips
 
@@ -92,26 +111,52 @@ The game includes 5 levels:
 
 ## Development
 
-### Adding New Levels
+### Project Structure
 
-To add new levels, edit the `LEVELS` list in `boxworld.py`. Each level is a list of strings representing the game board:
-
-```python
-LEVELS = [
-    [
-        "########",
-        "#  .   #",
-        "#  $   #",
-        "#  @   #",
-        "########",
-    ],
-    # Add more levels here...
-]
+```
+boxworld-sokoban/
+├── src/
+│   ├── boxworld.js          # Core game logic
+│   ├── components/
+│   │   ├── GameBoard.jsx    # Game board component
+│   │   └── GameBoard.css    # Board styling
+│   ├── App.jsx              # Main app component
+│   ├── App.css              # App styling
+│   └── main.jsx             # Entry point
+├── boxworld.py              # Original Python implementation
+├── test_boxworld.py         # Python tests
+└── package.json
 ```
 
-### Running Tests
+### Available Scripts
 
-The game includes comprehensive unit tests:
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Run ESLint
+```
+
+### Adding New Levels
+
+To add new levels, edit the `LEVELS` array in `src/boxworld.js`:
+
+```javascript
+export const LEVELS = [
+  [
+    "########",
+    "#  .   #",
+    "#  $   #",
+    "#  @   #",
+    "########",
+  ],
+  // Add more levels here...
+];
+```
+
+### Running Python Tests
+
+The original Python implementation is still available with its tests:
 
 ```bash
 python3 test_boxworld.py
@@ -125,6 +170,13 @@ python3 test_boxworld.py -v
 
 ## Technical Details
 
+### Web Version
+- **Framework**: React 19
+- **Build Tool**: Vite 7
+- **Language**: JavaScript (ES6+)
+- **Platform**: Any modern web browser
+
+### Python Version (Legacy)
 - **Language**: Python 3.6+
 - **Dependencies**: None (uses only standard library)
 - **Platform**: Cross-platform (Windows, macOS, Linux)
