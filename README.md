@@ -2,7 +2,13 @@
 
 A modern web-based implementation of the classic Boxworld/Sokoban puzzle game built with React and Vite. Push all boxes onto goal positions to complete each level!
 
-![Boxworld Game Screenshot](https://github.com/user-attachments/assets/53f9953d-662a-4e3f-8380-cca5ea468f01)
+## Screenshots
+
+### Game Interface
+![Game Interface](https://github.com/user-attachments/assets/53f9953d-662a-4e3f-8380-cca5ea468f01)
+
+### Level Complete
+![Level Complete](https://github.com/user-attachments/assets/b7afa26e-f4c5-439e-a7b1-ca67f594ee40)
 
 ## About
 
