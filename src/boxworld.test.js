@@ -140,7 +140,7 @@ describe('Level Solvability Tests', () => {
 
   it('All levels should have valid initial state', () => {
     // Sanity check: all levels should be constructible
-    LEVELS.forEach((levelData, index) => {
+    LEVELS.forEach((levelData) => {
       expect(() => {
         const game = new BoxWorld(levelData);
         expect(game).toBeDefined();
