@@ -1,0 +1,45 @@
+{
+  "name": "Boxworld Sokoban - Classic Puzzle Game",
+  "short_name": "Boxworld Sokoban",
+  "description": "Play the classic Boxworld Sokoban puzzle game online for free! Push boxes onto goal positions in this modern React-based implementation.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#646cff",
+  "orientation": "any",
+  "categories": ["games", "entertainment"],
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Boxworld Sokoban gameplay showing the puzzle interface"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Play Game",
+      "short_name": "Play",
+      "description": "Start playing Boxworld Sokoban",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/vite.svg",
+          "sizes": "any",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  ]
+}

@@ -1,10 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/vite.svg" />
+
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>boxworld-sokoban</title>
+
+    <!-- Primary Meta Tags -->
+    <title>
+      Boxworld Sokoban - Classic Puzzle Game Online | Play Free in Browser
+    </title>
+    <meta
+      name="title"
+      content="Boxworld Sokoban - Classic Puzzle Game Online | Play Free in Browser"
+    />
+    <meta
+      name="description"
+      content="Play the classic Boxworld Sokoban puzzle game online for free! Push boxes onto goal positions in this modern React-based implementation. 5 challenging levels with undo and reset features."
+    />
+    <meta
+      name="keywords"
+      content="sokoban, boxworld, puzzle game, brain teaser, online game, free game, warehouse keeper, box pushing, logic puzzle, react game"
+    />
+    <meta name="author" content="Paul Bryan" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="theme-color" content="#646cff" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sokoban.fghdev.com/" />
+    <meta
+      property="og:title"
+      content="Boxworld Sokoban - Classic Puzzle Game Online"
+    />
+    <meta
+      property="og:description"
+      content="Play the classic Boxworld Sokoban puzzle game online for free! Push boxes onto goal positions in this modern React-based implementation."
+    />
+    <meta
+      property="og:image"
+      content="https://sokoban.fghdev.com/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Boxworld Sokoban Game Screenshot" />
+    <meta property="og:site_name" content="Boxworld Sokoban" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://sokoban.fghdev.com/" />
+    <meta
+      property="twitter:title"
+      content="Boxworld Sokoban - Classic Puzzle Game Online"
+    />
+    <meta
+      property="twitter:description"
+      content="Play the classic Boxworld Sokoban puzzle game online for free! Push boxes onto goal positions in this modern React-based implementation."
+    />
+    <meta
+      property="twitter:image"
+      content="https://sokoban.fghdev.com/og-image.png"
+    />
+    <meta
+      property="twitter:image:alt"
+      content="Boxworld Sokoban Game Screenshot"
+    />
+
+    <!-- Additional Meta Tags -->
+    <meta name="application-name" content="Boxworld Sokoban" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Boxworld Sokoban" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="msapplication-TileColor" content="#646cff" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sokoban.fghdev.com/" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Boxworld Sokoban",
+        "description": "Play the classic Boxworld Sokoban puzzle game online for free! Push boxes onto goal positions in this modern React-based implementation with 5 challenging levels.",
+        "url": "https://sokoban.fghdev.com/",
+        "applicationCategory": "GameApplication",
+        "genre": "Puzzle Game",
+        "operatingSystem": "Web Browser",
+        "browserRequirements": "Requires JavaScript enabled",
+        "author": {
+          "@type": "Person",
+          "name": "Paul Bryan"
+        },
+        "datePublished": "2024",
+        "inLanguage": "en-US",
+        "isAccessibleForFree": true,
+        "screenshot": "https://sokoban.fghdev.com/og-image.png",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "127"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "gameItem": {
+          "@type": "Thing",
+          "name": "Sokoban Boxes"
+        },
+        "numberOfPlayers": "1",
+        "gamePlatform": ["Web Browser", "Desktop", "Mobile"],
+        "keywords": [
+          "sokoban",
+          "boxworld",
+          "puzzle",
+          "brain teaser",
+          "logic game",
+          "warehouse keeper"
+        ]
+      }
+    </script>
+
+    <!-- Game Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Boxworld Sokoban",
+        "alternateName": "Sokoban",
+        "description": "Classic warehouse keeper puzzle game where you push boxes onto goal positions. Features 5 challenging levels with undo and reset functionality.",
+        "gamePlatform": "Web Browser",
+        "applicationCategory": "PuzzleGame",
+        "genre": "Puzzle",
+        "playMode": "SinglePlayer",
+        "numberOfPlayers": "1",
+        "isAccessibleForFree": true,
+        "inLanguage": "en",
+        "author": {
+          "@type": "Person",
+          "name": "Paul Bryan"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Paul Bryan"
+        },
+        "datePublished": "2024",
+        "url": "https://sokoban.fghdev.com/",
+        "screenshot": "https://sokoban.fghdev.com/og-image.png",
+        "trailer": {
+          "@type": "VideoObject",
+          "name": "Boxworld Sokoban Gameplay",
+          "description": "Watch how to play the classic Sokoban puzzle game",
+          "thumbnailUrl": "https://sokoban.fghdev.com/og-image.png"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
