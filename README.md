@@ -5,9 +5,11 @@ A modern web-based implementation of the classic Boxworld/Sokoban puzzle game bu
 ## Screenshots
 
 ### Game Interface
+
 ![Game Interface](https://github.com/user-attachments/assets/53f9953d-662a-4e3f-8380-cca5ea468f01)
 
 ### Level Complete
+
 ![Level Complete](https://github.com/user-attachments/assets/b7afa26e-f4c5-439e-a7b1-ca67f594ee40)
 
 ## About
@@ -17,7 +19,7 @@ Boxworld is based on Sokoban, a classic Japanese puzzle game created in 1981. Th
 ## Features
 
 - 🎮 Classic Sokoban gameplay mechanics
-- 📦 5 challenging levels with increasing difficulty
+- 📦 60+ challenging levels with increasing difficulty
 - ↩️ Undo functionality to reverse mistakes
 - 🔄 Level reset capability
 - 🎯 Win condition detection
@@ -25,6 +27,12 @@ Boxworld is based on Sokoban, a classic Japanese puzzle game created in 1981. Th
 - ⌨️ **Arrow key controls** for intuitive gameplay
 - 🌐 Web-based - play in any modern browser
 - ⚛️ Built with React and Vite
+- 📱 Progressive Web App (PWA) support
+- 🧪 Comprehensive test suite with Vitest
+- 🤖 Built-in BFS solver for auto-solving levels
+- 🎨 Modern CSS with animations and glass morphism effects
+- 📊 Move tracking and statistics
+- 🚀 Optimized for Cloudflare Workers deployment
 
 ## Installation
 
@@ -85,7 +93,7 @@ npm run preview
 1. **Objective**: Push all boxes (📦) onto goal positions (⭕) to complete the level
 2. **Movement**: Use arrow keys to move in four directions (up, down, left, right)
 3. **Pushing**: Boxes can only be **pushed**, not pulled
-4. **Limitations**: 
+4. **Limitations**:
    - Only one box can be moved at a time
    - You cannot push a box if there's a wall or another box behind it
    - Be careful not to push boxes into corners - they might become unmovable!
@@ -101,13 +109,14 @@ npm run preview
 
 ## Level Progression
 
-The game includes 5 levels:
+The game includes 60+ levels with increasing difficulty:
 
-1. **Level 1**: Simple introduction - One box, one goal
-2. **Level 2**: Two boxes - Learn basic pushing mechanics
-3. **Level 3**: Corner challenge - Avoid dead ends
-4. **Level 4**: Classic Sokoban - A traditional puzzle layout
-5. **Level 5**: Tight squeeze - All boxes in a row
+- **Early Levels (1-10)**: Simple introduction - Basic mechanics and single box puzzles
+- **Intermediate Levels (11-30)**: Multiple boxes - Learn complex pushing strategies
+- **Advanced Levels (31-50)**: Corner challenges - Avoid dead ends and tight spaces
+- **Expert Levels (51+)**: Classic Sokoban layouts - Traditional puzzle designs with complex solutions
+
+All levels are sourced from classic Sokoban level sets and converted from numeric tile format to ASCII representation.
 
 ## Development
 
@@ -116,15 +125,26 @@ The game includes 5 levels:
 ```
 boxworld-sokoban/
 ├── src/
-│   ├── boxworld.js          # Core game logic
+│   ├── boxworld.js          # Core game logic and engine
+│   ├── maps.js              # Level data (60+ levels in numeric format)
+│   ├── solver.js            # BFS algorithm for auto-solving levels
+│   ├── boxworld.test.js     # Comprehensive test suite
 │   ├── components/
 │   │   ├── GameBoard.jsx    # Game board component
 │   │   └── GameBoard.css    # Board styling
 │   ├── App.jsx              # Main app component
 │   ├── App.css              # App styling
+│   ├── index.css            # Global styles
 │   └── main.jsx             # Entry point
-├── boxworld.py              # Original Python implementation
-├── test_boxworld.py         # Python tests
+├── public/
+│   ├── manifest.json        # PWA manifest
+│   ├── robots.txt           # SEO robots file
+│   └── sitemap.xml          # SEO sitemap
+├── index.html               # HTML template with comprehensive SEO
+├── vite.config.js           # Vite configuration
+├── eslint.config.js         # ESLint configuration
+├── wrangler.jsonc           # Cloudflare Workers deployment config
+├── GAMEPLAY_EXAMPLE.md      # Gameplay documentation
 └── package.json
 ```
 
@@ -135,52 +155,113 @@ npm run dev      # Start development server
 npm run build    # Build for production
 npm run preview  # Preview production build
 npm run lint     # Run ESLint
+npm run test     # Run test suite with Vitest
 ```
 
 ### Adding New Levels
 
-To add new levels, edit the `LEVELS` array in `src/boxworld.js`:
+Levels are stored in `src/maps.js` as numeric 2D arrays and automatically converted to ASCII format. To add new levels, add them to the `maps` array:
 
 ```javascript
-export const LEVELS = [
+export const maps = [
+  // Existing levels...
   [
-    "########",
-    "#  .   #",
-    "#  $   #",
-    "#  @   #",
-    "########",
+    [1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 3, 2, 2, 2, 1],
+    [1, 2, 2, 4, 2, 2, 2, 1],
+    [1, 2, 2, 6, 2, 2, 2, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1],
   ],
   // Add more levels here...
-];
+]
 ```
 
-### Running Python Tests
+**Tile Mapping:**
 
-The original Python implementation is still available with its tests:
+- `0` - EMPTY (outside playable area)
+- `1` - WALL
+- `2` - FLOOR
+- `3` - TARGET (goal position)
+- `4` - CARGO (box)
+- `5` - CARGO_ON_TARGET (box on goal)
+- `6` - KEEPER (player)
+- `7` - KEEPER_ON_TARGET (player on goal)
+
+### Running Tests
+
+Run the comprehensive test suite:
 
 ```bash
-python3 test_boxworld.py
+npm run test
 ```
 
-Or run with verbose output:
+The test suite includes:
 
-```bash
-python3 test_boxworld.py -v
-```
+- Level loading validation (ensures all 60+ levels work)
+- Game mechanics testing (movement, box pushing, collision detection)
+- Undo/redo functionality verification
+- Win condition detection
+- Edge case handling
 
 ## Technical Details
 
-### Web Version
-- **Framework**: React 19
-- **Build Tool**: Vite 7
-- **Language**: JavaScript (ES6+)
-- **Platform**: Any modern web browser
+### Architecture
 
-### Python Version (Legacy)
-- **Language**: Python 3.6+
-- **Dependencies**: None (uses only standard library)
-- **Platform**: Cross-platform (Windows, macOS, Linux)
-- **Interface**: Terminal/Console-based
+- **Framework**: React 19 with functional components and hooks
+- **Build Tool**: Vite 7 for fast development and optimized builds
+- **Language**: JavaScript (ES6+) with modern features
+- **Testing**: Vitest for unit testing
+- **Styling**: Pure CSS with modern features (Grid, Flexbox, animations)
+- **Deployment**: Cloudflare Workers ready
+- **PWA**: Progressive Web App with manifest and service worker support
+
+### Performance Features
+
+- **Level Conversion**: Efficient numeric-to-ASCII level conversion system
+- **State Management**: Optimized React state with useCallback for performance
+- **Responsive Design**: Mobile-first approach with responsive breakpoints
+- **SEO Optimized**: Comprehensive meta tags, structured data, and sitemap
+- **Modern CSS**: Glass morphism effects, smooth animations, and gradient backgrounds
+
+## Advanced Features
+
+### BFS Solver (`solver.js`)
+
+The game includes an optional breadth-first search algorithm that can automatically solve levels:
+
+```javascript
+import { solveLevelBFS } from './solver.js'
+
+// Solve a level with max 100 moves
+const result = solveLevelBFS(levelData, 100)
+if (result.solution) {
+  console.log(`Solution found: ${result.solution}`)
+  console.log(`Iterations: ${result.iterations}`)
+}
+```
+
+Features:
+
+- Finds optimal solutions for any solvable level
+- Configurable search depth limits
+- State deduplication to avoid cycles
+- Returns solution as a string of moves (U/D/L/R)
+
+### PWA Support
+
+- **Installable**: Can be installed as a native app on mobile devices
+- **Offline Ready**: Service worker support for offline gameplay
+- **App-like Experience**: Standalone display mode and native app shortcuts
+
+### Comprehensive Testing
+
+The test suite covers:
+
+- All 60+ levels load correctly and have valid player positions
+- Movement mechanics including wall collisions and box pushing
+- Undo/redo functionality maintains correct game state
+- Win condition detection for various level configurations
+- Edge cases like pushing boxes into walls or other boxes
 
 ## History
 
@@ -190,15 +271,45 @@ Sokoban was created by Hiroyuki Imabayashi in 1981 and published by Thinking Rab
 
 This is a recreational implementation of the classic Sokoban game mechanics. The game concept is in the public domain.
 
+## Deployment
+
+### Cloudflare Workers
+
+The project is configured for deployment to Cloudflare Workers:
+
+```bash
+# Deploy to Cloudflare Workers
+npx wrangler deploy
+```
+
+Configuration is handled via `wrangler.jsonc` with:
+
+- Static asset serving from `./dist`
+- Single-page application routing
+- Auto-trailing slash handling
+
+### Build Process
+
+```bash
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
+```
+
 ## Contributing
 
 Contributions are welcome! Feel free to:
 
-- Add new levels
-- Improve the UI
-- Add new features (level editor, save/load, etc.)
-- Fix bugs
-- Improve documentation
+- Add new levels (add to `src/maps.js`)
+- Improve the UI and animations
+- Add new features (level editor, save/load, hints system, etc.)
+- Enhance the BFS solver with A\* or other algorithms
+- Improve mobile responsiveness
+- Add accessibility features
+- Fix bugs and optimize performance
+- Improve documentation and add tutorials
 
 ## Acknowledgments
 
